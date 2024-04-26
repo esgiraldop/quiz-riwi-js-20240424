@@ -1,19 +1,8 @@
-const askOption = (msg, options) => {
-    //Function to ask for an answer and return a validated option
-    do{
-       ans = prompt(msg)
-        if(options.includes(ans) === false){
-            alert("Invalid option. Please try again")
-        }
-    }while(options.includes(ans) === false)
-    return ans
-}
-
-const main = () =>{
-    let initMoney = 2500000
-    const almoPrice = 15000
-    const subwayPrice = 23000
-    let msg = `Hi Hildebrando. Your available money is COP ${initMoney}.`+"" +
+import {askOption} from "./utilities.js";
+const case1 = (initMoney) =>{
+    let crrntMoney, options, ans
+    const almoPrice = 15000, subwayPrice = 23000
+    let msg = `Hi Hildebrando. Your available money is COP ${initMoney}. `+"" +
         "What do you want to buy?\n"  +
         "The available options are:\n"+
         "1. Almohabana and soda --> Price: COP 15.000\n"+
@@ -23,17 +12,20 @@ const main = () =>{
     ans = askOption(msg, options)
 
     if(ans === '3'){
-        alert(`(Hildebrando Does not buy anything) The remaining money you have for your trip is ${initMoney}`)
+        crrntMoney = initMoney
+        alert(`(Hildebrando Does not buy anything) The remaining money you have for your trip is ${crrntMoney}`)
     }
 
     if(ans ==='1'){
-        alert(`(Hildebrando gets sick!) The remaining money you have for your trip is ${initMoney - almoPrice}`)
+        crrntMoney = initMoney - almoPrice
+        alert(`(Hildebrando gets sick!) The remaining money you have for your trip is ${crrntMoney}`)
     }
 
     if(ans === '2'){
-        alert(`(Hildebrando gets is full and happy) The remaining money you have for your trip is ${initMoney - subwayPrice}`)
+        crrntMoney = initMoney - subwayPrice
+        alert(`(Hildebrando gets is full and happy) The remaining money you have for your trip is ${crrntMoney}`)
     }
-
+    return crrntMoney
 }
 
-main()
+export {case1}

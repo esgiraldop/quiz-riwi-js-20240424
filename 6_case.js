@@ -9,7 +9,7 @@ const winsBingoFunc = () => {
     }
 
 const case6 = initMoney =>{
-    let usrAns, msg, options, holidayEnds = false, plannedDays = 4, hilderDies = false
+    let usrAns, msg, options, holidayEnds = false, plannedDays = 4, hilderDies = false, state
     let hotelSpentMoney, hotelSpentMoneyPerDay = 200000, otherSpentMoney = 0, totalSpentMoney, remMoney, numDays
 
     for(let dayNum= 1; dayNum <= plannedDays; dayNum++){
@@ -109,8 +109,13 @@ const case6 = initMoney =>{
             totalSpentMoney = hotelSpentMoney + otherSpentMoney
             remMoney = initMoney - totalSpentMoney
             msg = "(The good time at the hotel has finished. "
-            if(hilderDies){
-                msg += "Unfortunately, Hildebrando has died)\n"
+            if(holidayEnds){
+                if(hilderDies){
+                    state = `died`
+                }else{
+                    state = `gone sick`
+                }
+                msg += `Unfortunately, Hildebrando has ${state} and he could only stay ${dayNum} days)\n`
             }else{
                 msg += "Hildebrando has to go back home)\n"
             }
@@ -121,7 +126,7 @@ const case6 = initMoney =>{
             break
         }
         }
-    return [remMoney, numDays]
+    // return [remMoney, numDays] //not needed
 }
 
 export {case6}
